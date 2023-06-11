@@ -1,0 +1,277 @@
+<?xml version="1.0"?>
+<robot name="prototype">
+
+  <link name="base_link">
+   
+  </link>
+  
+  <joint name="body_joint" type="fixed">
+    <origin xyz="0 0 0.225"/>
+    <parent link="base_link"/>
+    <child link="body_link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+   
+  <link name="body_link">
+    <origin xyz="0 0 0"/>
+    <visual>
+      <geometry>
+        <box size="0.35 0.35 0.2"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.35 0.35 0.2"/>
+      </geometry>
+    </collision>
+    
+  </link>
+
+
+  <joint name="leg_1" type="fixed">
+    <origin xyz="-0.175 -0.175 -0.1"/>
+    <parent link="body_link"/>
+    <child link="leg_1_link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  
+  
+  <link name="leg_1_link">
+    <visual>
+      <origin xyz="0.025 0.025 -0.075"/>
+      <geometry>
+        <box size="0.05 0.05 0.15"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.05 0.05 0.15"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="leg_2" type="fixed">
+    <origin xyz="0.175 -0.175 -0.1"/>
+    <parent link="body_link"/>
+    <child link="leg_2_link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  
+  
+  <link name="leg_2_link">
+    <visual>
+      <origin xyz="-0.025 0.025 -0.075"/>
+      <geometry>
+        <box size="0.05 0.05 0.15"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.05 0.05 0.15"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  
+  
+  <joint name="leg_3" type="fixed">
+    <origin xyz="-0.175 0.175 -0.1"/>
+    <parent link="body_link"/>
+    <child link="leg_3_link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  
+  
+  <link name="leg_3_link">
+    <visual>
+      <origin xyz="0.025 -0.025 -0.075"/>
+      <geometry>
+        <box size="0.05 0.05 0.15"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.05 0.05 0.15"/>
+      </geometry>
+    </collision>
+  </link>
+  
+
+
+  <joint name="leg_4" type="fixed">
+    <origin xyz="0.175 0.175 -0.1"/>
+    <parent link="body_link"/>
+    <child link="leg_4_link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  
+  
+  <link name="leg_4_link">
+    <visual>
+      <origin xyz="-0.025 -0.025 -0.075"/>
+      <geometry>
+        <box size="0.05 0.05 0.15"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.05 0.05 0.15"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="wheel_1_cyl" type="fixed">
+    <parent link="leg_1_link"/>
+    <child link="wheel_1_cyl_link"/>
+    <origin xyz="0 0 0" rpy="-${pi/2} 0 0"/>
+  </joint>
+  
+  <link name="wheel_1_cyl_link">
+    <visual>
+      <origin xyz="0.025 0.12 0.025"/>
+      <geometry>
+        <cylinder length="0.05" radius="0.02"/>
+      </geometry>
+    </visual>
+  </link>
+  
+  
+  <joint name="wheel_2_cyl" type="fixed">
+    <parent link="leg_2_link"/>
+    <child link="wheel_2_cyl_link"/>
+    <origin xyz="0 0 0" rpy="-${pi/2} 0 0"/>
+  </joint>
+  
+  <link name="wheel_2_cyl_link">
+    <visual>
+      <origin xyz="-0.025 0.12 0.025"/>
+      <geometry>
+        <cylinder length="0.05" radius="0.02"/>
+      </geometry>
+    </visual>
+  </link>
+  
+  
+  <joint name="wheel_3_cyl" type="fixed">
+    <parent link="leg_3_link"/>
+    <child link="wheel_3_cyl_link"/>
+    <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+  </joint>
+  
+  <link name="wheel_3_cyl_link">
+    <visual>
+      <origin xyz="0.025 -0.12 0.025"/>
+      <geometry>
+        <cylinder length="0.05" radius="0.02"/>
+      </geometry>
+    </visual>
+  </link>
+  
+  <joint name="wheel_4_cyl" type="fixed">
+    <parent link="leg_4_link"/>
+    <child link="wheel_4_cyl_link"/>
+    <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+  </joint>
+  
+  <link name="wheel_4_cyl_link">
+    <visual>
+      <origin xyz="-0.025 -0.12 0.025"/>
+      <geometry>
+        <cylinder length="0.05" radius="0.02"/>
+      </geometry>
+    </visual>
+  </link>
+  
+  <joint name="wheel_1" type="continuous">
+    <parent link="wheel_1_cyl_link"/>
+    <child link="wheel_1_link"/>
+    <origin xyz="0.025 0.12 0.025" rpy="-${pi} 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+  
+  
+  <link name="wheel_1_link">
+    <visual>
+      <origin xyz="0 0 0.05"/>
+      <geometry>
+        <cylinder length="0.05" radius="0.1"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.1"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="wheel_2" type="continuous">
+    <parent link="wheel_2_cyl_link"/>
+    <child link="wheel_2_link"/>
+    <origin xyz="-0.025 0.12 0.025" rpy="-${pi} 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+  
+  
+  <link name="wheel_2_link">
+    <visual>
+      <origin xyz="0 0 0.05"/>
+      <geometry>
+        <cylinder length="0.05" radius="0.1"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.1"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="wheel_3" type="continuous">
+    <parent link="wheel_3_cyl_link"/>
+    <child link="wheel_3_link"/>
+    <origin xyz="0.025 -0.12 0.025" rpy="${pi} 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+  
+  
+  <link name="wheel_3_link">
+    <visual>
+      <origin xyz="0 0 0.05"/>
+      <geometry>
+        <cylinder length="0.05" radius="0.1"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.1"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="wheel_4" type="continuous">
+    <parent link="wheel_4_cyl_link"/>
+    <child link="wheel_4_link"/>
+    <origin xyz="-0.025 -0.12 0.025" rpy="${pi} 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+  
+  
+  <link name="wheel_4_link">
+    <visual>
+      <origin xyz="0 0 0.05"/>
+      <geometry>
+        <cylinder length="0.05" radius="0.1"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.1"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  
+</robot>
+
+
+
